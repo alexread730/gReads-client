@@ -1,3 +1,11 @@
 .brand-logo {
   color: #EA882C;
 }
+
+.toggle-buttons {
+  margin: 2em;
+}
+
+.card-image img{
+  max-height: 30em;
+}
