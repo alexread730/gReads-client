@@ -10,7 +10,6 @@ $(() => {
     return new Error("Error")
   }
 
-
   makeBooksRequest(BASE_URL)
 
   function makeBooksRequest(url) {
@@ -61,5 +60,7 @@ $(() => {
         `);
     });
   }
+
+
 
 });

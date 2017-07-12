@@ -19,6 +19,10 @@ $(() => {
    }
    $('.add-book-btn').click(() => {
      validateAddForm();
+<<<<<<< HEAD
 
+=======
+     
+>>>>>>> newbook
    })
 })
