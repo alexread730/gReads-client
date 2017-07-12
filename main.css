@@ -1,5 +1,11 @@
 .brand-logo {
   color: #EA882C;
+  line-height: 10px;
+}
+
+.brand-logo img {
+  height: 60px;
+  margin-left: 20px;
 }
 
 .toggle-buttons {
@@ -8,4 +14,13 @@
 
 .card-image img{
   max-height: 30em;
+}
+
+.landing-wrapper {
+  margin-top: 2em;
+}
+
+.landing-img {
+  width: 100%;
+  margin-top: 2em;
 }
