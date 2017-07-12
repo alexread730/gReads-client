@@ -2,8 +2,12 @@ $(() => {
 
     let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1/books`: `https://greads-api.herokuapp.com/api/v1/books`
 
-    addbook(BASE_URL)
     $('select').material_select();
+    addBook(BASE_URL);
+    $('.add-book-btn').click(() => {
+      validateAddForm();
+
+    })
 
     function parseJSON(response) {
       return response.json();
@@ -13,7 +17,16 @@ $(() => {
       return new Error("Error")
     }
 
+    function createBookObject() {
+      const bookObject = {
+        title: $('#title').val(),
+        genre: $('#genre').val(),
+        cover_url: $('#cover-img').val(),
+        description: $('#description').val(),
+        authors: $('#select-author option:checked').val()
 
+      }
+    }
 
     function addBookRequest(url) {
       const bookRequest = new Request(url, {
@@ -55,8 +68,5 @@ $(() => {
        return false;
      }
    }
-   $('.add-book-btn').click(() => {
-     validateAddForm();
 
-   })
 })
