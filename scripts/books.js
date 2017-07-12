@@ -45,7 +45,6 @@ $(() => {
               <div class="card-stacked">
                 <div class="card-content">
                   <h3 class="header">${book.title}</h3>
-                  <h5>${book.authors}</h5>
                   <p>${book.genre}</p>
                   <p>${book.description}</p>
                 </div>

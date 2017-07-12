@@ -3,10 +3,18 @@ $(() => {
     let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1`: `https://greads-api.herokuapp.com/api/v1`
 
     $('select').material_select();
+    makeAuthorRequest(BASE_URL + "/author");
+
 
     $('.add-book-btn').click(() => {
       validateAddForm();
-      addBook(BASE_URL + "/book");
+      addBookRequest(BASE_URL + "/books");
+
+    })
+
+    $('.add-author-btn').click(() => {
+      const selectedAuthor = $('select').val();
+      $('ul').append(`<li>${selectedAuthor}</li>`);
     })
   //////////////////////////
   // general functions/////
@@ -29,7 +37,7 @@ $(() => {
     }
 
     function validateAddForm() {
-      if (isValid($('#title').val()) && isValid($('#genre').val()) && isValid($('#cover-img').val()) && isValid($('#description').val()) && isValid($('#select-author option:checked').val())) {
+      if (isValid($('#title').val()) && isValid($('#genre').val()) && isValid($('#cover-img').val()) && isValid($('#description').val()) && isValid($('.select-author option:checked').val())) {
         return true;
       } else {
         return false;
@@ -40,7 +48,7 @@ $(() => {
     //add authors to select/
     ////////////////////////
 
-    // makeAuthorRequest(BASE_URL + "/author")
+
 
     function makeAuthorRequest(url) {
       const author = new Request(url, {
@@ -55,9 +63,16 @@ $(() => {
         .then(parseJSON)
         .then(response => {
           console.log(response);
-          // inputAuthors
+          populateSelect(response);
         })
         .catch(throwError)
+    }
+
+    function populateSelect(authors) {
+      authors.forEach(author => {
+        $('select').append(`<option value="${author.firstName} ${author.lastName}" data-id=${author.id}>${author.firstName} ${author.lastName}</option>`)
+      })
+      $('select').material_select();
     }
 
     //////////////////////////
@@ -68,19 +83,18 @@ $(() => {
       const bookObject = {
         title: $('#title').val(),
         genre: $('#genre').val(),
-        cover_url: $('#cover-img').val(),
         description: $('#description').val(),
-        authors: $('#select-author option:checked').val()
+        cover_url: $('#cover-img').val()
 
       }
-      console.log(bookObject);
+      return bookObject;
     }
 
     function addBookRequest(url) {
       const bookRequest = new Request(url, {
         method: "post",
         mode: 'cors',
-        body: JSON.stringify(newAccount),
+        body: JSON.stringify(createBookObject()),
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json; charset=utf-8'
