@@ -1,6 +1,6 @@
 $(() => {
 
-  let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1/books`: `https://jf-g-reads.herokuapp.com/api/v1/books`
+  let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3001/api/v1/books`: `https://greads-api.herokuapp.com/api/v1/books`
 
 
   function parseJSON(response) {
