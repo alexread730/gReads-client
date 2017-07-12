@@ -1,13 +1,16 @@
 $(() => {
 
-    let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1/books`: `https://greads-api.herokuapp.com/api/v1/books`
+    let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1`: `https://greads-api.herokuapp.com/api/v1`
 
     $('select').material_select();
-    addBook(BASE_URL);
+
     $('.add-book-btn').click(() => {
       validateAddForm();
-
+      addBook(BASE_URL + "/book");
     })
+  //////////////////////////
+  // general functions/////
+  ////////////////////////
 
     function parseJSON(response) {
       return response.json();
@@ -16,6 +19,50 @@ $(() => {
     function throwError(res) {
       return new Error("Error")
     }
+
+    function isValid(value) {
+      if (value !== "" && typeof value == "string") {
+        return true;
+      } else {
+        Materialize.toast('All fields must be completed!', 4000);
+      }
+    }
+
+    function validateAddForm() {
+      if (isValid($('#title').val()) && isValid($('#genre').val()) && isValid($('#cover-img').val()) && isValid($('#description').val()) && isValid($('#select-author option:checked').val())) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    //////////////////////////
+    //add authors to select/
+    ////////////////////////
+
+    // makeAuthorRequest(BASE_URL + "/author")
+
+    function makeAuthorRequest(url) {
+      const author = new Request(url, {
+        method: "get",
+        mode: 'cors'
+      })
+      getAuthors(author)
+    };
+
+    function getAuthors(request) {
+      fetch(request)
+        .then(parseJSON)
+        .then(response => {
+          console.log(response);
+          // inputAuthors
+        })
+        .catch(throwError)
+    }
+
+    //////////////////////////
+    // add book functions/////
+    ////////////////////////
 
     function createBookObject() {
       const bookObject = {
@@ -26,6 +73,7 @@ $(() => {
         authors: $('#select-author option:checked').val()
 
       }
+      console.log(bookObject);
     }
 
     function addBookRequest(url) {
@@ -51,22 +99,4 @@ $(() => {
         .catch(throwError)
     }
 
-
-
-   function isValid(value) {
-     if (value !== "" && typeof value == "string") {
-       return true;
-     } else {
-       Materialize.toast('All fields must be completed!', 4000);
-     }
-   }
-
-   function validateAddForm() {
-     if (isValid($('#title').val()) && isValid($('#genre').val()) && isValid($('#cover-img').val()) && isValid($('#description').val()) && isValid($('#select-author option:checked').val())) {
-       return true;
-     } else {
-       return false;
-     }
-   }
-
-})
+});
