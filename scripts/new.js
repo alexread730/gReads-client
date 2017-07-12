@@ -20,14 +20,6 @@ $(() => {
   // general functions/////
   ////////////////////////
 
-    function parseJSON(response) {
-      return response.json();
-    }
-
-    function throwError(res) {
-      return new Error("Error")
-    }
-
     function isValid(value) {
       if (value !== "" && typeof value == "string") {
         return true;

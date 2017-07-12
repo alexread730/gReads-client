@@ -2,14 +2,6 @@ $(() => {
 
   let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1/books`: `https://greads-api.herokuapp.com/api/v1/books`
 
-  function parseJSON(response) {
-    return response.json();
-  }
-
-  function throwError(res) {
-    return new Error("Error")
-  }
-
   makeBooksRequest(BASE_URL)
 
   function makeBooksRequest(url) {
@@ -49,8 +41,8 @@ $(() => {
                   <p>${book.description}</p>
                 </div>
                 <div class="card-action">
-                  <a class="waves-effect waves-light btn blue">Edit</a>
-                  <a class="waves-effect waves-light btn red">Remove</a>
+                  <a href="" class="waves-effect waves-light btn blue">Edit</a>
+                  <a href="/delete.html" class="waves-effect waves-light btn red">Remove</a>
                 </div>
               </div>
             </div>
