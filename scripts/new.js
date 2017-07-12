@@ -1,14 +1,14 @@
 $(() => {
 
-    let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000/api/v1`: `https://greads-api.herokuapp.com/api/v1`
+    let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000`: `https://greads-api.herokuapp.com`
 
     $('select').material_select();
-    makeAuthorRequest(BASE_URL + "/author");
+    makeAuthorRequest(BASE_URL + "/api/v1/author");
 
 
     $('.add-book-btn').click(() => {
       validateAddForm();
-      addBookRequest(BASE_URL + "/books");
+      addBookRequest(BASE_URL + "/api/v1/books");
 
     })
 
@@ -107,8 +107,7 @@ $(() => {
       fetch(request)
         .then(parseJSON)
         .then(response => {
-          console.log(response);
-          appendBooks(response);
+          window.location = `./books.html`
         })
         .catch(throwError)
     }
