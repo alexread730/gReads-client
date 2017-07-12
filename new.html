@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Galvanize Reads | New Book</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper black">
+        <a href="#" class="brand-logo"><img alt="Galvanize Logo" src="https://s3-us-west-2.amazonaws.com/galvanize.com-dev/galvanize-logo.svg" width="150px" data-reactid="13">Reads</a>
+      </div>
+    </nav>
+    <main>
+      <section class="toggle-buttons container">
+        <a class="waves-effect waves-light btn blue"><i class="material-icons left">cloud</i>Authors</a>
+        <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons left">cloud</i>Books</a>
+      </section>
+      <section class="container">
+        <h3 class="center-align">Add a New Book</h3>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s8">
+                <input id="title" type="text">
+                <label for="title">Title</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s8">
+                <input id="genre" type="text">
+                <label for="genre">Genre</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s8">
+                <input id="cover-img" type="text">
+                <label for="cover-img">Cover Image URL</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="description" class="materialize-textarea"></textarea>
+                <label for="description">Description</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="author-box input-field col s8">
+                <label for="author-box">Authors</label>
+              </div>
+            </div>
+            <div class="input-field col s8">
+              <select class="select-author">
+                <option value="" disabled selected>Choose an Author</option>
+                <option value="Hemingway">Option 1</option>
+                <option value="Your mom">Option 2</option>
+                <option value="My mom">Option 3</option>
+              </select>
+              <label>Authors</label>
+            </div>
+            <a class="add-author-btn waves-effect waves-light btn blue">Add</a>
+          </form>
+          <a class="add-book-btn waves-effect waves-light btn col s8 center-align blue">Add Book</a>
+        </div>
+
+      </section>
+    </main>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+     <script src="/scripts/new.js" charset="utf-8"></script>
+  </body>
+</html>
