@@ -25,11 +25,18 @@ $(() => {
   function deleteRelocation() {
     $('.delete-btn').click(function() {
       const bookId = $(this).data('id');
-      console.log(bookId);
       window.location = `./delete.html?id=${bookId}`
     })
   }
 
+  function editRelocation() {
+    $('.edit-btn').click(function() {
+      const bookId = $(this).data('id');
+      window.location = `./edit.html?id=${bookId}`
+    })
+  }
+
+  //appends each book in db to books page
   function appendBooks(response) {
     response.forEach(book => {
 
@@ -47,7 +54,7 @@ $(() => {
                   <p>${book.description}</p>
                 </div>
                 <div class="card-action">
-                  <a href="" class="waves-effect waves-light btn blue">Edit</a>
+                  <a class="waves-effect waves-light btn blue edit-btn" data-id=${book.id}>Edit</a>
                   <a class="waves-effect waves-light btn red delete-btn" data-id=${book.id}>Remove</a>
                 </div>
               </div>
@@ -56,7 +63,10 @@ $(() => {
         </div>
         `);
     });
+
+    //activates delete and edit click handlers
     deleteRelocation();
+    editRelocation();
 
   }
 
