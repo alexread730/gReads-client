@@ -26,7 +26,7 @@ $(() => {
     $('.delete-btn').click(function() {
       const bookId = $(this).data('id');
       console.log(bookId);
-      window.location = `/delete.html?id=${bookId}`
+      window.location = `./delete.html?id=${bookId}`
     })
   }
 

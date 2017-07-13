@@ -1,3 +1,7 @@
+/********************
+Header
+*********************/
+
 .brand-logo {
   color: #EA882C;
   line-height: 10px;
@@ -8,6 +12,9 @@
   margin-left: 20px;
 }
 
+/********************
+Books
+*********************/
 .toggle-buttons {
   margin: 2em;
 }
@@ -15,6 +22,10 @@
 .card-image img{
   max-height: 30em;
 }
+
+/********************
+Landing
+*********************/
 
 .landing-wrapper {
   margin-top: 2em;
@@ -25,6 +36,9 @@
   margin-top: 2em;
 }
 
+/********************
+Add Book Page
+*********************/
 .author-box {
   height: 3em;
 }
