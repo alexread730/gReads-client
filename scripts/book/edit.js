@@ -12,8 +12,8 @@ $(() => {
 
 
     $('.edit-book-btn').click(() => {
-      validateAddForm();
-      addBookRequest(BASE_URL + "/api/v1/books");
+      validateEditForm();
+      editBookRequest(`${BASE_URL}/api/v1/books/${parsedQueryString}`);
 
     })
 
@@ -33,7 +33,7 @@ $(() => {
       }
     }
 
-    function validateAddForm() {
+    function validateEditForm() {
       if (isValid($('#title').val()) && isValid($('#genre').val()) && isValid($('#cover-img').val()) && isValid($('#description').val()) && isValid($('.select-author option:checked').val())) {
         return true;
       } else {
@@ -84,6 +84,7 @@ $(() => {
         cover_url: $('#cover-img').val()
 
       }
+      console.log(bookObject);
       return bookObject;
     }
 

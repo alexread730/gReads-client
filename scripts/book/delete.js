@@ -47,9 +47,8 @@ $(() => {
     processRequest(request);
   }
 
-  function appendBook(response) {
-    response.forEach(book => {
-
+  function appendBook(book) {
+      console.log(book);
       $('.book').append(`
         <div class="card-wrapper">
           <div class="col s12 m7">
@@ -72,9 +71,7 @@ $(() => {
         <a class="delete-button waves-effect waves-light btn col s8 center-align red">Delete ${book.title}?</a>
 
         `);
-    });
-
-  }
+    }
 
   function processRequest(request) {
     fetch(request)
