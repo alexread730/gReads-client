@@ -64,10 +64,15 @@ $(() => {
     }
 
     function fillInputs(book) {
+      book = book[0];
       $('#title').val(book.title);
       $('#genre').val(book.genre);
       $('#cover-img').val(book.cover_url);
       $('#description').val(book.description);
+      book.authors.forEach(author => {
+          $('.author-box').append(`<li>${author.firstName} ${author.lastName}`)
+      })
+
     }
 
 

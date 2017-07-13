@@ -59,8 +59,6 @@ $(() => {
     //add authors to select/
     ////////////////////////
 
-
-
     function makeAuthorRequest(url) {
       const author = new Request(url, {
         method: "get",
@@ -127,7 +125,7 @@ $(() => {
     }
 
     //////////////////////////
-    // add book functions////
+    // add author functions//
     ////////////////////////
 
     function createAuthorBookObject(bookId, authorId) {
@@ -157,7 +155,6 @@ $(() => {
       fetch(request)
         .then(parseJSON)
         .then(response => {
-          console.log(response);
           window.location = `./books.html`
         })
         .catch(throwError)

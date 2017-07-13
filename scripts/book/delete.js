@@ -48,29 +48,39 @@ $(() => {
   }
 
   function appendBook(book) {
-      console.log(book);
-      $('.book').append(`
-        <div class="card-wrapper">
-          <div class="col s12 m7">
-            <div class="card horizontal">
-              <div class="card-image">
-                <img src="${book.cover_url}">
+    book = book[0]
+
+    let authors = ``
+
+    book.authors.forEach(author => {
+      authors += `${author.firstName} ${author.lastName}, `
+    })
+
+    authors = authors.substr(0, authors.length-2);
+
+    $('.book').append(`
+      <div class="card-wrapper">
+        <div class="col s12 m7">
+          <div class="card horizontal">
+            <div class="card-image">
+              <img src="${book.cover_url}">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <h3 class="header">${book.title}</h3>
+                <h5>${authors}</h5>
+                <p>${book.genre}</p>
+                <p>${book.description}</p>
               </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <h3 class="header">${book.title}</h3>
-                  <p>${book.genre}</p>
-                  <p>${book.description}</p>
-                </div>
-                <div class="card-action">
-                </div>
+              <div class="card-action">
               </div>
             </div>
           </div>
         </div>
-        <a class="delete-button waves-effect waves-light btn col s8 center-align red">Delete ${book.title}?</a>
+      </div>
+      <a class="delete-button waves-effect waves-light btn col s8 center-align red">Delete ${book.title}?</a>
 
-        `);
+      `);
     }
 
   function processRequest(request) {
