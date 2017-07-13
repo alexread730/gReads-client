@@ -1,6 +1,8 @@
 $(() => {
 
     let BASE_URL = (window.location.hostname == "localhost") ? `http://localhost:3000`: `https://greads-api.herokuapp.com`
+    const hrefLocation = window.location.href;
+    const parsedQueryString = parseQueryString(hrefLocation);
 
     let authorArray = [];
 
@@ -11,7 +13,9 @@ $(() => {
     $('.add-book-btn').click(() => {
       validateAddForm();
       addBookRequest(BASE_URL + "/api/v1/books");
-
+      authorArray.forEach(function(author) {
+        addAuthorBook(`${BASE_URL}/api/v1/books`, author)
+      })
     })
 
     $('.add-author-btn').click(() => {
@@ -22,6 +26,8 @@ $(() => {
       if (!authorArray.includes(selectedID)) {
         authorArray.push(selectedID);
       }
+
+
 
     })
   //////////////////////////
@@ -112,8 +118,10 @@ $(() => {
       fetch(request)
         .then(parseJSON)
         .then(response => {
-          addAuthor(response);
-          // window.location = `./books.html`
+          console.log(response);
+          authorArray.forEach(author => {
+            addAuthorBook(BASE_URL + "/api/v1/author-book", response, author);
+          })
         })
         .catch(throwError)
     }
@@ -122,22 +130,21 @@ $(() => {
     // add book functions////
     ////////////////////////
 
-    function createAuthorBookObject() {
-      const bookObject = {
-        book_id: $('#title').val(),
-        genre: $('#genre').val(),
-        description: $('#description').val(),
-        cover_url: $('#cover-img').val()
+    function createAuthorBookObject(bookId, authorId) {
+
+      const authorBookObject = {
+        book_id: bookId,
+        author_id: authorId
 
       }
       return authorBookObject;
     }
 
-    function addAuthor(url) {
+    function addAuthorBook(url, bookId, authorId) {
       const authBookRequest = new Request(url, {
         method: "post",
         mode: 'cors',
-        body: JSON.stringify(createAuthorBookObject()),
+        body: JSON.stringify(createAuthorBookObject(bookId, authorId)),
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json; charset=utf-8'
@@ -150,6 +157,7 @@ $(() => {
       fetch(request)
         .then(parseJSON)
         .then(response => {
+          console.log(response);
           window.location = `./books.html`
         })
         .catch(throwError)
