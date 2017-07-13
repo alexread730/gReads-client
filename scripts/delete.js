@@ -19,12 +19,35 @@ $(() => {
       .then(parseJSON)
       .then(response => {
         console.log(response);
-        appendBooks(response);
+        appendBook(response);
+        deleteBook();
       })
       .catch(throwError)
   }
 
-  function appendBooks(response) {
+  function deleteBook() {
+    $('.delete-button').click(function() {
+      deleteRequest(ONE_BOOK_URL)
+    })
+  }
+
+  function deleteRequest(url) {
+    const deleteBody = {
+      id: parsedQueryString
+    }
+    console.log(deleteBody);
+    const request = new Request(url, {
+      method: "delete",
+      body: JSON.stringify(deleteBody),
+      headers: {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      }
+    });
+    processRequest(request);
+  }
+
+  function appendBook(response) {
     response.forEach(book => {
 
       $('.book').append(`
@@ -51,5 +74,17 @@ $(() => {
         `);
     });
 
+  }
+
+  function processRequest(request) {
+    fetch(request)
+      .then(res => {
+        res.json()
+          .then(json => {
+            return window.location = './books.html';
+
+          })
+      })
+      .catch(throwError)
   }
 })
