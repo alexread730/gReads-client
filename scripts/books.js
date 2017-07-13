@@ -22,10 +22,16 @@ $(() => {
       .catch(throwError)
   }
 
+  function deleteRelocation() {
+    $('.delete-btn').click(function() {
+      const bookId = $(this).data('id');
+      console.log(bookId);
+      window.location = `/delete.html?id=${bookId}`
+    })
+  }
+
   function appendBooks(response) {
     response.forEach(book => {
-      console.log(book);
-
 
       $('.books-wrapper').append(`
         <div class="card-wrapper">
@@ -42,7 +48,7 @@ $(() => {
                 </div>
                 <div class="card-action">
                   <a href="" class="waves-effect waves-light btn blue">Edit</a>
-                  <a href="/delete.html" class="waves-effect waves-light btn red">Remove</a>
+                  <a class="waves-effect waves-light btn red delete-btn" data-id=${book.id}>Remove</a>
                 </div>
               </div>
             </div>
@@ -50,6 +56,8 @@ $(() => {
         </div>
         `);
     });
+    deleteRelocation();
+
   }
 
 
