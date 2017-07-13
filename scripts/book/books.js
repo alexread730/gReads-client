@@ -40,6 +40,14 @@ $(() => {
   function appendBooks(response) {
     response.forEach(book => {
 
+      let authors = ``
+
+      book.authors.forEach(author => {
+        authors += `${author.firstName} ${author.lastName}, `
+      })
+
+      authors = authors.substr(0, authors.length-2);
+
       $('.books-wrapper').append(`
         <div class="card-wrapper">
           <div class="col s12 m7">
@@ -50,6 +58,7 @@ $(() => {
               <div class="card-stacked">
                 <div class="card-content">
                   <h3 class="header">${book.title}</h3>
+                  <h5>${authors}</h5>
                   <p>${book.genre}</p>
                   <p>${book.description}</p>
                 </div>
