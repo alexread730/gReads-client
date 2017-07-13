@@ -41,6 +41,36 @@ $(() => {
       }
     }
 
+    /////////////////////////////
+    // get book info from api///
+    ///////////////////////////
+
+    function makeBooksRequest(url) {
+      const bookRequest = new Request(url, {
+        method: "get",
+        mode: 'cors'
+      })
+      getBook(bookRequest)
+    };
+
+    function getBook(request) {
+      fetch(request)
+        .then(parseJSON)
+        .then(response => {
+          console.log(response);
+          fillInputs(response);
+        })
+        .catch(throwError)
+    }
+
+    function fillInputs(book) {
+      $('#title').val(book.title);
+      $('#genre').val(book.genre);
+      $('#cover-img').val(book.cover_url);
+      $('#description').val(book.description);
+    }
+
+
 
     //////////////////////////
     //add authors to select/
@@ -105,40 +135,11 @@ $(() => {
       fetch(request)
         .then(parseJSON)
         .then(response => {
-          // window.location = `./books.html`
-          console.log('edited!');
+          window.location = `./books.html`
         })
         .catch(throwError)
     }
 
-    /////////////////////////////
-    // get book info from api///
-    ///////////////////////////
-
-    function makeBooksRequest(url) {
-      const bookRequest = new Request(url, {
-        method: "get",
-        mode: 'cors'
-      })
-      getBook(bookRequest)
-    };
-
-    function getBook(request) {
-      fetch(request)
-        .then(parseJSON)
-        .then(response => {
-          console.log(response);
-          fillInputs(response);
-        })
-        .catch(throwError)
-    }
-
-    function fillInputs(book) {
-      $('#title').val(book.title);
-      $('#genre').val(book.genre);
-      $('#cover-img').val(book.cover_url);
-      $('#description').val(book.description);
-    }
 
 
 
